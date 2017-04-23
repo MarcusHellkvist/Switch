@@ -57,4 +57,17 @@ public class PlayerController : MonoBehaviour {
 	void Jump (){
 		rbody.velocity = new Vector2 (rbody.velocity.x, jumpHeight);
 	}
+
+	void OnCollisionEnter2D (Collision2D other)
+	{
+		if (other.transform.tag == "MovingPlatform") {
+			transform.parent = other.transform;
+		}
+	}
+	void OnCollisionExit2D (Collision2D other)
+	{
+		if (other.transform.tag == "MovingPlatform") {
+			transform.parent = null;
+		}
+	}
 }
